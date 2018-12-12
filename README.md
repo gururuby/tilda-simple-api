@@ -1,4 +1,7 @@
 # Tilda::Simple::Api
+[![Build Status](https://travis-ci.org/gururuby/tilda-simple-api.svg?branch=master)](https://travis-ci.org/gururuby/tilda-simple-api)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f9b19b95e9b50be1a52f/maintainability)](https://codeclimate.com/github/gururuby/tilda-simple-api/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f9b19b95e9b50be1a52f/test_coverage)](https://codeclimate.com/github/gururuby/tilda-simple-api/test_coverage)
 
 Simple ruby wrapper for Tilda API
 
