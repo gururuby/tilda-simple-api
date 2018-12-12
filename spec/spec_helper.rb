@@ -1,7 +1,6 @@
 require 'bundler/setup'
 require 'tilda/simple/api'
 require 'webmock/rspec'
-require 'pry-byebug'
 
 Dir['./spec/support/**/*.rb'].sort.each(&method(:require))
 
