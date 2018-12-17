@@ -1,4 +1,5 @@
 # Tilda::Simple::Api
+[![Gem Version](https://badge.fury.io/rb/tilda-simple-api.svg)](https://badge.fury.io/rb/tilda-simple-api)
 [![Build Status](https://travis-ci.org/gururuby/tilda-simple-api.svg?branch=master)](https://travis-ci.org/gururuby/tilda-simple-api)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f9b19b95e9b50be1a52f/maintainability)](https://codeclimate.com/github/gururuby/tilda-simple-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f9b19b95e9b50be1a52f/test_coverage)](https://codeclimate.com/github/gururuby/tilda-simple-api/test_coverage)
@@ -31,6 +32,7 @@ Configuration api:
     config.secret_key = "your-secret-key"
     # config.api_version = "v1" # by default'
     # config.api_host = "http://api.tildacdn.info" # by default'
+    # config.raise_api_errors = false # by_default
   end
 ```
 
@@ -54,6 +56,17 @@ API requests example
 | **full page by page_id**            | `tilda_api.page_full(page_id)`             | http://help.tilda.ws/api#getpagefull          |
 | **page info for export(only body)** | `tilda_api.page_export(page_id)`           | http://help.tilda.ws/api#getpageexport        |
 | **full page info for export**       | `tilda_api.page_full_export(page_id)`      | http://help.tilda.ws/api#getpagefullexport    |
+
+### API Errors
+When switch `config.raise_api_errors` to `true`. API raise errors. Here is available API Errors:
+
+| API Error                                         | Error case                                      | 
+| --------------------------------------------------|-------------------------------------------------|
+| **Tilda::Simple::Api::Errors::InvalidCredentials**| invalid public_key or secret_key passed         |
+| **Tilda::Simple::Api::Errors::ProjectNotFound**   | tilda api not found project by passed project_id|
+| **Tilda::Simple::Api::Errors::PageNotFound**      | tilda api not found page by passed page_id      |
+| **Tilda::Simple::Api::Errors::Error**             | in all other cases                              |
+
 
 ## Contributing
 

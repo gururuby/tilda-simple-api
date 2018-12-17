@@ -31,22 +31,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.projects_list }
-
-      before do
-        allow(config).to receive(:secret_key).and_return('broken key')
-        stub_api_request(:projects_list_error, config: config)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Wrong Secret Key length"
-      end
-    end
+    include_examples 'invalid credentials error', :projects_list
   end
 
   describe '#project' do
@@ -66,21 +51,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.project(-1) }
-
-      before do
-        stub_api_request(:project_error, config: config, project_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find project with this 'projectid' parameter"
-      end
-    end
+    include_examples 'project not found error', :project
   end
 
   describe '#project_export' do
@@ -112,22 +83,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.project_export(-1) }
-
-      before do
-        stub_api_request(:project_export_error, config: config, project_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find project with this 'projectid' parameter"
-      end
-    end
-
+    include_examples 'project not found error', :project_export
   end
 
   describe '#pages_list' do
@@ -176,21 +132,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.pages_list(-1) }
-
-      before do
-        stub_api_request(:pages_list_error, config: config, project_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find project with this 'projectid' parameter"
-      end
-    end
+    include_examples 'project not found error', :pages_list
   end
 
   describe '#page' do
@@ -223,21 +165,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.page(-1) }
-
-      before do
-        stub_api_request(:page_error, config: config, page_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find page with this 'pageid' parameter"
-      end
-    end
+    include_examples 'page not found error', :page
   end
 
   describe '#page_full' do
@@ -270,21 +198,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.page_full(-1) }
-
-      before do
-        stub_api_request(:page_full_error, config: config, page_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find page with this 'pageid' parameter"
-      end
-    end
+    include_examples 'page not found error', :page_full
   end
 
   describe '#page_export' do
@@ -335,21 +249,7 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.page_export(-1) }
-
-      before do
-        stub_api_request(:page_export_error, config: config, page_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find page with this 'pageid' parameter"
-      end
-    end
+    include_examples 'page not found error', :page_export
   end
 
   describe '#page_full_export' do
@@ -400,20 +300,6 @@ RSpec.describe Tilda::Simple::Api::Request do
       end
     end
 
-    context 'error call' do
-      let(:response) { subject.page_full_export(-1) }
-
-      before do
-        stub_api_request(:page_full_export_error, config: config, page_id: -1)
-      end
-
-      it 'return status ERROR' do
-        expect(response['status']).to eq 'ERROR'
-      end
-
-      it 'return error message' do
-        expect(response['message']).to eq "Error. Can't find page with this 'pageid' parameter"
-      end
-    end
+    include_examples 'page not found error', :page_full_export
   end
 end

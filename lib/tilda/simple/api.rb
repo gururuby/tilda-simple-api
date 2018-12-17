@@ -1,6 +1,7 @@
 require 'httparty'
 require 'tilda/simple/api/config'
 require 'tilda/simple/api/errors'
+require 'tilda/simple/api/errors_handler'
 require 'tilda/simple/api/request'
 require 'tilda/simple/api/version'
 
